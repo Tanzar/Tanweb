@@ -1,0 +1,22 @@
+/*
+This code is free to use, just remember to give credit.
+*/
+/* 
+    Created on : 2022-04-13, 11:20:40
+    Author     : Grzegorz Spakowski, Tanzar
+*/
+
+body {
+    background-color: #a0dfff;
+    margin: 0px;
+}
+
+header {
+}
+
+
+input:invalid {
+    border-color: red;
+}
+
+
