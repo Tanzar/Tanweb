@@ -75,4 +75,8 @@ class Utility {
     public static function toNumber($val){
         return intval($val);
     }
+    
+    public static function getKeys(array $array) : array{
+        return array_keys($array);
+    }
 }
