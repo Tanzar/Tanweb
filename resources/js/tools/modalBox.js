@@ -2,6 +2,7 @@
  * This code is free to use, just remember to give credit.
  */
 
+
 function openModalBox(title, fields, buttonText, onAccept, item){
 //no cleancode here, at least for now
     if(item === undefined){
@@ -40,6 +41,9 @@ function openModalBox(title, fields, buttonText, onAccept, item){
                 input.onchange = function(){
                     item[this.variable] = this.value;
                 }
+                if(item[field.variable] !== undefined){
+                    input.value = item[field.variable];
+                }
                 break;
             case 'number':
                 var input = document.createElement('input');
@@ -50,6 +54,9 @@ function openModalBox(title, fields, buttonText, onAccept, item){
                 input.variable = field.variable;
                 input.onchange = function(){
                     item[this.variable] = this.value;
+                }
+                if(item[field.variable] !== undefined){
+                    input.value = item[field.variable];
                 }
                 break;
             case 'select':
@@ -73,6 +80,9 @@ function openModalBox(title, fields, buttonText, onAccept, item){
                 select.onchange = function(){
                     item[this.variable] = this.value;
                 }
+                if(item[field.variable] !== undefined){
+                    select.value = item[field.variable];
+                }
                 break;
             case 'checkbox':
                 var check = document.createElement('input');
@@ -83,7 +93,15 @@ function openModalBox(title, fields, buttonText, onAccept, item){
                 container.appendChild(label);
                 check.variable = field.variable;
                 check.onchange = function(){
-                    item[this.variable] = this.checked;
+                    if(this.checked){
+                        item[this.variable] = 1;
+                    }
+                    else{
+                        item[this.variable] = 0;
+                    }
+                }
+                if(item[field.variable] !== undefined){
+                    check.checked = item[field.variable];
                 }
                 break;
             case 'display':

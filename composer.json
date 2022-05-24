@@ -8,6 +8,8 @@
             "sys/classes/Tanweb",
             "sys/classes/Controllers",
             "sys/classes/Services",
+            "sys/classes/Data",
+            "sys/classes/Custom",
             "sys/libs"
         ]
     }

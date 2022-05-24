@@ -15,7 +15,7 @@ use Tanweb\Database\ConnectionString as ConnectionString;
 use Tanweb\Database\DatabaseException as DatabaseException;
 
 /**
- * Class responsible for managing (one) database connection.
+ * Class responsible for managing database connection.
  * Upon creation it starts transaction, 
  * than methods select, insert, update allow to use SQLBuilder to create Queries
  * Methods finalize and rollback are (should be) calld at end of transaction

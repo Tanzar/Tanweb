@@ -44,17 +44,15 @@ class Request {
     private function filterData(array $data, bool $check){
         if($check){
             $this->checkRequired($data);
+            $this->controller = $data['controller'];
+            $this->task = $data['task'];
         }
         $this->data = new Container();
-        foreach($data as $key => $value){
-            if($key === 'controller'){
-                $this->controller = $value;
-            }
-            elseif($key === 'task'){
-                $this->task = $value;
-            }
-            else{
-                $this->data->add($value, $key);
+        if(isset($data)){
+            foreach($data as $key => $value){
+                if($key !== 'task' && $key !== 'controller'){
+                    $this->data->add($value, $key);
+                }
             }
         }
     }
@@ -72,7 +70,7 @@ class Request {
         return $this->method;
     }
     
-    public function get(string $index = null) : Container{
+    public function get(string $index = null){
         if(isset($index)){
             return $this->data->getValue($index);
         }
@@ -82,11 +80,21 @@ class Request {
     }
     
     public function getController() : string {
-        return $this->controller;
+        if(isset($this->controller)){
+            return $this->controller;
+        }
+        else{
+            return '';
+        }
     }
     
     public function getTask() : string {
-        return $this->task;
+        if(isset($this->task)){
+            return $this->task;
+        }
+        else{
+            return '';
+        }
     }
     
     public function toJSON() :string {
