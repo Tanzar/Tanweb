@@ -7,16 +7,17 @@
 namespace Data\Exceptions;
 
 use Tanweb\TanwebException as TanwebException;
+use Tanweb\Config\INI\Languages as Languages;
 
 /**
- * Description of PrivilageException
+ * Description of UserNotFound
  *
  * @author Tanzar
  */
-class PrivilageException extends TanwebException{
-    //put your code here
+class NotFoundException extends TanwebException{
+    
     public function errorMessage(): string {
-        return 'Privilages error: ' . $this->getMessage();
+        $languages = Languages::getInstance();
+        return $languages->get('not_found');
     }
-
 }
