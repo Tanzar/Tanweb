@@ -40,6 +40,7 @@ footer {
     min-width: fit-content;
     position: fixed;
     bottom: 0;
+    right: 0;
     border: 3px solid var(--border-color);
     background-color: var(--menu-background);
     padding: 5px;
@@ -108,7 +109,7 @@ footer {
     width: 100px;
     min-height: 200px;
     max-width: 100px;
-    position: fixed;
+    position: absolute;
     z-index: 10;
     top: 116px;
     left: 0;
