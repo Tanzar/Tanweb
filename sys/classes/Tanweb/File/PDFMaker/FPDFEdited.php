@@ -6,7 +6,7 @@ use Tanweb\File\PDFMaker\Column as Column;
 use Tanweb\File\PDFMaker\Columns as Columns;
 
 
-class FPDFExtended extends FPDF {
+class FPDFEdited extends FPDF {
     private $aligns;
     private Columns $cols;
     
@@ -19,7 +19,7 @@ class FPDFExtended extends FPDF {
         $this->aligns= $aligns;
     }
     
-    protected function headerRow($data) {
+    protected function headerRow($data, int $height = 5, bool $fill = false) {
         //Calculate the height of the row
         $nb=0;
         for($i = 0; $i < $this->cols->length(); $i++){
@@ -48,7 +48,12 @@ class FPDFExtended extends FPDF {
             if(isset($data[$i])){
                 $text = $data[$i];
             }
-            $this->MultiCell($w,5,$data[$i],0,$a, $col->doFill());
+            if($fill || $col->doFill()){
+                $this->MultiCell($w,$height,$data[$i],0,$a, true);
+            }
+            else{
+                $this->MultiCell($w,$height,$data[$i],0,$a, false);
+            }
             //Draw the border
             $this->Rect($x,$y,$w,$h);
             //Put the position to the right of the cell
@@ -57,7 +62,7 @@ class FPDFExtended extends FPDF {
         $this->Ln($h);
     }
 
-    function Row($data) {
+    function Row($data, int $height = 5, bool $fill = false) {
         //Calculate the height of the row
         $nb=0;
         for($i = 0; $i < $this->cols->length(); $i++){
@@ -70,7 +75,7 @@ class FPDFExtended extends FPDF {
             }
             $nb=max($nb,$this->NbLines($width ,$text));
         }
-        $h=5*$nb;
+        $h=$height*$nb;
         //Issue a page break first if needed
         $this->CheckPageBreak($h);
         //Draw the cells of the row
@@ -88,7 +93,12 @@ class FPDFExtended extends FPDF {
             if(isset($data[$key])){
                 $text = $data[$key];
             }
-            $this->MultiCell($w,5,$text,0,$a, $col->doFill());
+            if($fill || $col->doFill()){
+                $this->MultiCell($w,$height,$text,0,$a, true);
+            }
+            else{
+                $this->MultiCell($w,$height,$text,0,$a, false);
+            }
             //Draw the border
             $this->Rect($x,$y,$w,$h);
             //Put the position to the right of the cell
