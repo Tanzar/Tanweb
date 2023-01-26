@@ -12,6 +12,7 @@ use Tanweb\Security\Security as Security;
 use Tanweb\TanwebException as TanwebException;
 use Tanweb\Container as Container;
 use Tanweb\Logger\Logger as Logger;
+use Tanweb\Config\Pages as Pages;
 
 /**
  * Security for pages, should be used on EVERY page that needs protection
@@ -29,6 +30,7 @@ class PageAccess {
      */
     public static function allowFor(array $privilages){
         try{
+            self::blockInternetExplorer();
             $address = Server::getRequestUrl();
             $logger = Logger::getInstance();
             $logger->logAccess($address);
@@ -48,6 +50,15 @@ class PageAccess {
             self::redirectToIndex($msg);
         }
     }
+    
+    public static function blockInternetExplorer() : void {
+        $ie_user = !!preg_match('/MSIE (6|7|8)/', $_SERVER['HTTP_USER_AGENT']);
+        if($ie_user){
+            header("Location: " . Pages::getURL('unsupportedBrowser.html'));
+            die();
+        }
+    }
+    
     
     private static function redirectToIndex($msg){
         echo '<script>';
