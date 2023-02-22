@@ -2,8 +2,8 @@
 This code is free to use, just remember to give credit.
 */
 /* 
-    Created on : 2022-05-24, 11:16:32
-    Author     : Tanzar
+    Created on : 2022-05-17, 14:49:59
+    Author     : Grzegorz Spakowski, Tanzar
 */
 
 /* Blocker for page in background */
@@ -88,7 +88,16 @@ This code is free to use, just remember to give credit.
 }
 
 .modal-box-input {
-    min-width: 120px;
+    width: 250px;
+    max-width: 250px;
+    outline: none;
+    background-color: inherit;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    border-bottom-color: #0066ff;
+}
+
+.modal-box-input-date {
     max-width: 250px;
     outline: none;
     background-color: inherit;
@@ -105,9 +114,13 @@ This code is free to use, just remember to give credit.
     border-color: #0066ff;
 }
 
+.modal-box-input:focus {
+    border-color: #0066ff;
+}
+
 .modal-box-textarea {
-    min-width: 120px;
-    max-width: 400px;
+    width: 250px;
+    max-width: 250px;
     outline: none;
     background-color: inherit;
     border: 2px solid #0066ff;
@@ -118,4 +131,11 @@ This code is free to use, just remember to give credit.
 
 .modal-box-textarea:invalid {
     border-color: #ff0000;
+}
+
+.modal-box-label {
+    width: 100%;
+}
+
+.modal-box-checkbox {
 }

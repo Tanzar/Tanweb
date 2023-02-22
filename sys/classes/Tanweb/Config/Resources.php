@@ -149,7 +149,7 @@ class Resources {
                 echo '<a href="' . $link . '">' . $index . '</a>';
                 break;
             default :
-                echo 'Error: resource handling not defined for - ' . $ext['type'];
+                echo 'Error: resource handling not defined for - ' . $ext->get('type');
         }
     }
     
@@ -187,8 +187,10 @@ class Resources {
     private static function getFileURL(string $dir, string $filename) : string{
         $files = Server::getFilesPaths($dir);
         $path = $files->get($filename);
+        $localRoot = Server::getLocalRoot();
+        $mtime = filemtime($localRoot . '/' . $path);
         $url = Server::getRootURL();
-        $url .= $path;
+        $url .= $path . '?version=' . $mtime;
         return $url;
     }
 }
