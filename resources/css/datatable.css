@@ -49,6 +49,7 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    cursor: pointer;
 }
 
 .datatable tr:nth-child(odd){
@@ -63,24 +64,25 @@
 
 .datatable-buttons-container {
     border: solid 3px #0099ff;
-    background-color: #b2d8ff;
+    background-color: #ffffff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 0px;
 }
 
 .datatable-button {
-    border: solid 3px #0066ff;
-    background-color: inherit;
-    padding: 5px;
-    color: #0066ff;
-    border-radius: 5px;
-    margin: 5px;
+    border: solid 3px #0066ff !important;
+    background-color: inherit !important;
+    padding: 5px !important;
+    color: #000000 !important;
+    border-radius: 5px !important;
+    margin: 5px !important;
+    cursor: pointer;
 }
 
 .datatable-button:hover {
-    background-color: #0066ff;
-    color: white;
+    background-color: #0066ff !important;
+    color: #ffffff !important;
 }
 
 .datatable-loading {
