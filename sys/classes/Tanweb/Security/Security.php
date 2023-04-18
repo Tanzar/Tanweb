@@ -148,6 +148,8 @@ class Security {
         else{
             $this->logout();
             Session::setUser($username);
+            $logger = Logger::getInstance();
+            $logger->logSecurity("User logged in.");
         }
     }
     
@@ -158,6 +160,8 @@ class Security {
                 $username = $user->get($this->usernameColumn);
                 $this->logout();
                 Session::setUser($username);
+                $logger = Logger::getInstance();
+                $logger->logSecurity("User logged in.");
             }
             else{
                 $this->throwException('wrong username or password.');
@@ -169,7 +173,11 @@ class Security {
     }
     
     public function logout(){
-        Session::unsetUser();
+        if(Session::getUsername() !== ""){
+            $logger = Logger::getInstance();
+            $logger->logSecurity("User logged out.");
+            Session::unsetUser();
+        }
     }
     
     /**
